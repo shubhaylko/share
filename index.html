@@ -14,17 +14,49 @@
         background-size: 400% 400%;
         animation: gradientBG 10s ease infinite;
       }
-
       @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      #landingOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        color: white;
+        font-size: 36px;
+        flex-direction: column;
+      }
+      #startBtn {
+        margin-top: 20px;
+        padding: 15px 40px;
+        font-size: 24px;
+        border: none;
+        border-radius: 10px;
+        background: #ff69b4;
+        color: white;
+        cursor: pointer;
       }
 
       #content {
+        display: none;
         margin-top: 60px;
         position: relative;
-        z-index: 2; /* above balloons */
+        z-index: 2;
       }
 
       h1 {
@@ -44,7 +76,9 @@
         background-size: 1600% 1600%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: rainbowBG 6s ease infinite, bounceTitle 1.5s ease-in-out infinite alternate;
+        animation:
+          rainbowBG 6s ease infinite,
+          bounceTitle 1.5s ease-in-out infinite alternate;
         text-shadow:
           0 0 5px #fff,
           0 0 10px #fff,
@@ -54,15 +88,52 @@
           0 0 50px #00ffff,
           0 0 60px #ffff00,
           0 0 70px #00ff00;
+        position: relative;
+      }
+
+      /* Moti special glow */
+      .specialGlow {
+        animation: motiGlow 1.2s ease-in-out infinite alternate;
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff00ff,
+          0 0 30px #ff1493,
+          0 0 40px #ff69b4,
+          0 0 50px #ff1493,
+          0 0 60px #ff00ff,
+          0 0 70px #ff69b4;
+      }
+      @keyframes motiGlow {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
 
       @keyframes rainbowBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
-
-      @keyframes bounceTitle { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+      @keyframes bounceTitle {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
 
       #messageBox {
         margin: 20px auto;
@@ -78,28 +149,117 @@
         z-index: 2;
       }
 
-      .cake-container { position: relative; display: inline-block; margin-top: 30px; z-index: 2; }
-      .cake { font-size: 80px; animation: bounce 1s infinite alternate; }
-      @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-20px); } }
-      .candle { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 10px; height: 25px; background: orange; border-radius: 2px; box-shadow: 0 0 10px orange; animation: candleGlow 1s ease-in-out infinite alternate; }
-      @keyframes candleGlow { 0% { box-shadow: 0 0 5px yellow, 0 0 15px orange; } 50% { box-shadow: 0 0 15px yellow, 0 0 30px orange; } 100% { box-shadow: 0 0 5px yellow, 0 0 15px orange; } }
+      .cake-container {
+        position: relative;
+        display: inline-block;
+        margin-top: 30px;
+        z-index: 2;
+      }
+      .cake {
+        font-size: 80px;
+        animation: bounce 1s infinite alternate;
+      }
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-20px);
+        }
+      }
+      .candle {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 25px;
+        background: orange;
+        border-radius: 2px;
+        box-shadow: 0 0 10px orange;
+        animation: candleGlow 1s ease-in-out infinite alternate;
+      }
+      @keyframes candleGlow {
+        0% {
+          box-shadow:
+            0 0 5px yellow,
+            0 0 15px orange;
+        }
+        50% {
+          box-shadow:
+            0 0 15px yellow,
+            0 0 30px orange;
+        }
+        100% {
+          box-shadow:
+            0 0 5px yellow,
+            0 0 15px orange;
+        }
+      }
 
-      .sparkle { position: fixed; width: 4px; height: 4px; background: white; border-radius: 50%; opacity: 0.8; pointer-events: none; animation: floatSparkle linear infinite; z-index: 1; }
-      @keyframes floatSparkle { 0% { transform: translateY(100vh) scale(1); opacity: 0.8; } 100% { transform: translateY(-10vh) scale(0.5); opacity: 0; } }
+      .sparkle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        pointer-events: none;
+        animation: floatSparkle linear infinite;
+        z-index: 1;
+      }
+      @keyframes floatSparkle {
+        0% {
+          transform: translateY(100vh) scale(1);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-10vh) scale(0.5);
+          opacity: 0;
+        }
+      }
 
-      .balloon { position: fixed; bottom: -150px; width: 50px; height: 70px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; opacity: 0.9; z-index: 0; animation-name: floatBalloon; animation-timing-function: linear; animation-iteration-count: infinite; }
-      .balloon::after { content: ""; position: absolute; width: 2px; height: 40px; background: #555; bottom: -40px; left: 50%; transform: translateX(-50%); }
-      @keyframes floatBalloon { 0% { transform: translateX(0) translateY(0) rotate(0deg); } 100% { transform: translateX(var(--x)) translateY(-120vh) rotate(var(--rot)); } }
+      .balloon {
+        position: fixed;
+        bottom: -150px;
+        width: 50px;
+        height: 70px;
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        opacity: 0.9;
+        z-index: 0;
+        animation-name: floatBalloon;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      .balloon::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 40px;
+        background: #555;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      @keyframes floatBalloon {
+        0% {
+          transform: translateX(0) translateY(0) rotate(0deg);
+        }
+        100% {
+          transform: translateX(var(--x)) translateY(-120vh) rotate(var(--rot));
+        }
+      }
     </style>
-
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </head>
-
   <body>
+    <div id="landingOverlay">
+      <button id="startBtn">Click</button>
+    </div>
+
     <div id="content">
       <h1 id="title"></h1>
       <div id="messageBox"><p id="message"></p></div>
-
       <div class="cake-container">
         <div class="cake">🎂</div>
         <div class="candle"></div>
@@ -111,10 +271,17 @@
     </audio>
 
     <script>
-      const params = new URLSearchParams(window.location.search);
-      const name = params.get("name") || "Friend";
+      const startBtn = document.getElementById("startBtn");
+      const overlay = document.getElementById("landingOverlay");
+      const content = document.getElementById("content");
+      const music = document.getElementById("music");
+      const titleEl = document.getElementById("title");
+      const messageEl = document.getElementById("message");
 
-      const msg = `🎉 Happy Birthday ${name}! 🎂
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("name") || "Moti";
+
+      const msg = `🎉 Happy Birthday  ${name} ! 🎂
 
 May your day be filled with happiness, laughter, and unforgettable moments 💖  
 
@@ -122,78 +289,84 @@ You are truly special and deserve all the success, love, and joy in the world �
 
 Keep smiling, keep shining, and enjoy every second of your special day 🥳✨`;
 
-      document.getElementById("title").innerText = "🎈 Happy Birthday " + name + "! 🎉";
+      startBtn.addEventListener("click", () => {
+        overlay.style.display = "none";
+        content.style.display = "block";
+        music.volume = 0.5;
+        music.play().catch(() => {});
 
-      let i = 0;
-      function typeEffect() {
-        if (i < msg.length) {
-          document.getElementById("message").innerHTML += msg.charAt(i);
-          i++;
-          setTimeout(typeEffect, 30);
+        // rainbow title
+        titleEl.innerText = `🎈 Happy Birthday ${name}! 🎉`;
+
+        // If name is Moti, add special effect
+        if (name.toLowerCase() === "moti") {
+          titleEl.classList.add("specialGlow");
+
+          // Extra confetti burst for Moti
+          for (let k = 0; k < 1500; k++) {
+            setTimeout(() => {
+              confetti({
+                particleCount: 150,
+                spread: 200,
+                origin: { x: Math.random(), y: Math.random() },
+                colors: ["#ff69b4", "#ff1493", "#ff00ff", "#00ffff", "#ffff00"],
+              });
+            }, k * 300);
+          }
         }
-      }
 
-      function openSurprise() {
+        // Type effect
+        let i = 0;
+        function typeEffect() {
+          if (i < msg.length) {
+            messageEl.innerHTML += msg.charAt(i);
+            i++;
+            setTimeout(typeEffect, 30);
+          }
+        }
         typeEffect();
-        // Confetti
-        for (let j = 0; j < 50; j++) {
-          setTimeout(() => {
-            confetti({
-              particleCount: 50,
-              spread: 120,
-              origin: { x: Math.random(), y: Math.random() }
-            });
-          }, j * 200);
+
+        // Sparkles
+        function createSparkle() {
+          const s = document.createElement("div");
+          s.classList.add("sparkle");
+          s.style.left = Math.random() * window.innerWidth + "px";
+          const size = Math.random() * 6 + 2;
+          s.style.width = size + "px";
+          s.style.height = size + "px";
+          s.style.animationDuration = Math.random() * 3 + 2 + "s";
+          document.body.appendChild(s);
+          setTimeout(
+            () => s.remove(),
+            parseFloat(s.style.animationDuration) * 1000,
+          );
         }
-      }
+        setInterval(createSparkle, 100);
 
-      // Sparkles
-      function createSparkle() {
-        const sparkle = document.createElement("div");
-        sparkle.classList.add("sparkle");
-        sparkle.style.left = Math.random() * window.innerWidth + "px";
-        const size = Math.random() * 6 + 2;
-        sparkle.style.width = size + "px";
-        sparkle.style.height = size + "px";
-        sparkle.style.animationDuration = Math.random() * 3 + 2 + "s";
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), parseFloat(sparkle.style.animationDuration) * 1000);
-      }
-      setInterval(createSparkle, 100);
-
-      // Balloons
-      function createBalloon() {
-        const balloon = document.createElement("div");
-        balloon.classList.add("balloon");
-        const colors = ['#FF3CAC','#784BA0','#FFD700','#FF6F61','#00FFFF','#FF69B4'];
-        balloon.style.background = colors[Math.floor(Math.random()*colors.length)];
-        balloon.style.setProperty('--x', Math.random()*200 - 100 + 'px');
-        balloon.style.setProperty('--rot', Math.random()*60 - 30 + 'deg');
-        balloon.style.left = Math.random() * window.innerWidth + 'px';
-        const duration = Math.random() * 10 + 8;
-        balloon.style.animationDuration = duration + 's';
-        document.body.appendChild(balloon);
-        setTimeout(() => balloon.remove(), duration*1000);
-      }
-      setInterval(createBalloon, 1000);
-
-      // Music
-      const music = document.getElementById("music");
-      function startMusic() {
-        music.volume = 0.5;
-        music.play().catch(()=>{}); // ignore errors if blocked
-        window.removeEventListener('click', startMusic); // only once
-      }
-
-      // Try autoplay
-      window.onload = () => {
-        openSurprise();
-        music.volume = 0.5;
-        music.play().catch(()=>{}); 
-      }
-
-      // Fallback: play music on first click anywhere
-      window.addEventListener('click', startMusic);
+        // Balloons
+        function createBalloon() {
+          const b = document.createElement("div");
+          b.classList.add("balloon");
+          const colors = [
+            "#FF3CAC",
+            "#784BA0",
+            "#FFD700",
+            "#FF6F61",
+            "#00FFFF",
+            "#FF69B4",
+          ];
+          b.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          b.style.setProperty("--x", Math.random() * 200 - 100 + "px");
+          b.style.setProperty("--rot", Math.random() * 60 - 30 + "deg");
+          b.style.left = Math.random() * window.innerWidth + "px";
+          const duration = Math.random() * 10 + 8;
+          b.style.animationDuration = duration + "s";
+          document.body.appendChild(b);
+          setTimeout(() => b.remove(), duration * 1000);
+        }
+        setInterval(createBalloon, 1000);
+      });
     </script>
   </body>
 </html>
